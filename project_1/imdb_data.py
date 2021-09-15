@@ -1,0 +1,78 @@
+import os
+import torch
+import numpy as np
+from nltk import word_tokenize
+from collections import Counter
+# Sparse matrix implementation
+from scipy.sparse import csr_matrix
+
+from vocab import Vocab
+
+
+class IMDBdata:
+	def __init__(self, directory, vocab=None):
+		""" Reads in data into sparse matrix format """
+		pFiles = os.listdir("%s/pos" % directory)
+		nFiles = os.listdir("%s/neg" % directory)
+
+		if not vocab:
+			self.vocab = Vocab()
+		else:
+			self.vocab = vocab
+
+		# For csr_matrix (see http://docs.scipy.org/doc/scipy-0.15.1/reference/generated/scipy.sparse.csr_matrix.html#scipy.sparse.csr_matrix)
+		X_values = []
+		X_row_indices = []
+		X_col_indices = []
+		Y = []
+
+		XwordList = []
+		XfileList = []
+
+		# Read positive files
+		for i in range(len(pFiles)):
+			f = pFiles[i]
+			for line in open("%s/pos/%s" % (directory, f)):
+				wordList = [self.vocab.GetID(w.lower()) for w in word_tokenize(line) if
+							self.vocab.GetID(w.lower()) >= 0]
+				XwordList.append(wordList)
+				XfileList.append(f)
+				wordCounts = Counter(wordList)
+				for (wordId, count) in wordCounts.items():
+					if wordId >= 0:
+						X_row_indices.append(i)
+						X_col_indices.append(wordId)
+						X_values.append(count)
+			Y.append(+1.0)
+
+		# Read negative files
+		for i in range(len(nFiles)):
+			f = nFiles[i]
+			for line in open("%s/neg/%s" % (directory, f)):
+				wordList = [self.vocab.GetID(w.lower()) for w in word_tokenize(line) if
+							self.vocab.GetID(w.lower()) >= 0]
+				XwordList.append(wordList)
+				XfileList.append(f)
+				wordCounts = Counter(wordList)
+				for (wordId, count) in wordCounts.items():
+					if wordId >= 0:
+						X_row_indices.append(len(pFiles) + i)
+						X_col_indices.append(wordId)
+						X_values.append(count)
+			Y.append(-1.0)
+
+		self.vocab.Lock()
+
+		# Create a sparse matrix in csr format
+		self.X = csr_matrix((X_values, (X_row_indices, X_col_indices)),
+							shape=(max(X_row_indices) + 1, self.vocab.GetVocabSize()))
+		self.Y = np.asarray(Y)
+
+		# Randomly shuffle
+		index = np.arange(self.X.shape[0])
+		np.random.shuffle(index)
+		self.X = self.X[index, :]
+		self.XwordList = [torch.LongTensor(XwordList[i]) for i in
+						  index]  # Two different sparse formats, csr and lists of IDs (XwordList).
+		self.XfileList = [XfileList[i] for i in index]
+		self.Y = self.Y[index]

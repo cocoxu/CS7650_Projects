@@ -1,0 +1,3 @@
+Licensing Information:  You are free to use or extend this project for educational purposes provided that (1) you do not distribute or publish solutions, (2) you retain this notice, and (3) you provide clear attribution to The Georgia Institute of Technology, including a link to https://aritter.github.io/CS-7650/
+ 
+Attribution Information: This assignment was developed at The Georgia Institute of Technology by Alan Ritter (alan.ritter@cc.gatech.edu)
