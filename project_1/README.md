@@ -29,7 +29,7 @@ To run nbow/cnn code (without GPU) -
 
 ```python3 nbow.py / cnn.py```
 
-To run nbow/cnn code (without GPU) -
+To run nbow/cnn code (with GPU) -
 
 ```CUDA_VISIBLE_DEVICES=<GPU device id> python3 nbow.py / cnn.py```
 
