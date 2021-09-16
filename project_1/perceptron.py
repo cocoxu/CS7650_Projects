@@ -42,8 +42,10 @@ class Perceptron:
 
 train = IMDBdata("aclImdb_small/train")
 train.vocab.Lock()
+print("Train")
 dev = IMDBdata("aclImdb_small/dev", vocab=train.vocab)
 test = IMDBdata("aclImdb_small/test", vocab=train.vocab)
+print("Test")
 
 ptron = Perceptron(train.X, train.Y, 10)
 ptron.ComputeAverageParameters()

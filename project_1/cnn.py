@@ -1,5 +1,6 @@
 import torch
-from nbow import Train, EvalNet, SavePredictions
+import torch.nn as nn
+from utils import Train, EvalNet, SavePredictions
 from imdb_data import IMDBdata
 
 
