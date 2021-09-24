@@ -187,7 +187,7 @@ We can add a $3^{rd}$ dimension/feature to each input such that the data becomes
          The function can be decomposed into a sequence of smaller functions, as shown in the table below. Using the chain rule and calculus, fill in the remaining derivative and component cells. 
         
 \begin{table}[h!]
-\renewcommand{\arraystretch}{2}
+\renewcommand{\arraystretch}{2}% Tighter
     \centering
     \small
     \begin{tabular}{|c | c | l | l | l | l |} 
@@ -196,8 +196,8 @@ We can add a $3^{rd}$ dimension/feature to each input such that the data becomes
     $L$    & $L = -Z^2$             & $\frac{dL}{dZ} = \frac{dL}{dZ}$               & N/A                                 & $\frac{dL}{dZ} = -2Z $   & N/A              \\[2pt] \hline
     $Z$    & $Z = sin(W) + cos(Y)$  & $\frac{dL}{dW} = \frac{dL}{dZ} \frac{dZ}{dW}$ & $\frac{dL}{dY} = $                  & $\frac{dZ}{dW} = cos(W)$ &                  \\[2pt] \hline
     $W$    & $W = -S$               & $\frac{dL}{dS} = $                            & N/A                                 &                          & N/A              \\[2pt] \hline
-    $Y$    & $Y = e^{S}$           & $\frac{dL}{dY} = $                            & N/A                                 &                          & N/A              \\[2pt] \hline
-    $S$    & $S = -x^{-1}$          & $\frac{dL}{dx} = $                            & N/A                                 &                          & N/A              \\[2pt] \hline
+    $Y$    & $Y = e^{-S}$           & $\frac{dL}{dY} = $                            & N/A                                 &                          & N/A              \\[2pt] \hline
+    $S$    & $S = x^{-1}$          & $\frac{dS}{dx} = $                            & N/A                                 &                          & N/A              \\[2pt] \hline
     \end{tabular}
     \end{table}
 
