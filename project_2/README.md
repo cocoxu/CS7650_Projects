@@ -29,6 +29,6 @@ To run crf tagger -
 
 ```python3 lstm_crf.py```
 
-If you want to run with GPU, please use ```CUDA_VISIBLE_DEVICES=<GPU device id>''' before the command.
+If you want to run with GPU, please use ```CUDA_VISIBLE_DEVICES=<GPU device id>``` before the command.
 
 
