@@ -13,7 +13,7 @@ The submission instructions are in the colab notebook.
     
 2. Extract the data file.
 
-  ```tar -xvzf data.tgz```
+    ```tar -xvzf data.tgz```
   
 ## Running the code
 
