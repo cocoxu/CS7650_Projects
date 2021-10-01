@@ -67,7 +67,7 @@ class LSTM_CRFtagger(CharLSTMtagger):
 	def viterbi_batch(self, sentences):
 		viterbiSeqs = []
 		(X, X_mask, X_char) = self.sentences2input_tensors(sentences)
-		lstm_scores = self.forward(X.cuda(), X_char.cuda())
+		lstm_scores = self.forward(X, X_char)
 		for s in range(len(sentences)):
 			(viterbiSeq, ll) = self.viterbi(lstm_scores[s], len(sentences[s]))
 			viterbiSeqs.append(viterbiSeq)
@@ -159,6 +159,6 @@ if __name__ == "__main__":
 	tag2i = {w:i for i,w in enumerate(set([t for l in tags_train for t in l]))}
 	i2tag = {i:t for t,i in tag2i.items()}
 
-	crf_lstm = LSTM_CRFtagger(DIM_HID=500, DIM_EMB=300, DIM_CHAR_EMB=30, tag2i=tag2i).cuda()
+	crf_lstm = LSTM_CRFtagger(DIM_HID=500, DIM_EMB=300, DIM_CHAR_EMB=30, tag2i=tag2i)
 	train_crf_lstm(sentences_train, tags_train, crf_lstm)  # Train on the full dataset
 	# train_crf_lstm(sentences_train[0:50], tags_train[0:50])          #Train only the first batch (use this during development/debugging)

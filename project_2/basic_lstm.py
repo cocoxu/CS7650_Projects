@@ -40,7 +40,7 @@ class BasicLSTMtagger(nn.Module):
 
 	def inference(self, sentences):
 		X, X_mask = prepare_input(sentences2indices(sentences, word2i))
-		pred = self.forward(X.cuda(), X_mask.cuda()).argmax(dim=2)
+		pred = self.forward(X, X_mask).argmax(dim=2)
 		return [[i2tag[pred[i,j].item()] for j in range(len(sentences[i]))] for i in range(len(sentences))]
 
 	def print_predictions(self, words, tags):
@@ -126,5 +126,5 @@ if __name__ == "__main__":
 	tag2i = {w:i for i,w in enumerate(set([t for l in tags_train for t in l]))}
 	i2tag = {i:t for t,i in tag2i.items()}
 
-	lstm = BasicLSTMtagger(DIM_HID=500, DIM_EMB=300, tag2i=tag2i).cuda()
+	lstm = BasicLSTMtagger(DIM_HID=500, DIM_EMB=300, tag2i=tag2i)
 	train_basic_lstm(sentences_train, tags_train, lstm)
