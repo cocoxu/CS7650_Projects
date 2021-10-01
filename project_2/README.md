@@ -7,10 +7,12 @@ The submission instructions are in the colab notebook.
 
 ## Setting up the code
 
-1. Please use python>=3.7. 
+1. Please use python>=3.7. You can install using
+
     ```pip install -r requirements.txt```
     
 2. Extract the data file.
+
   ```tar -xvzf data.tgz```
   
 ## Running the code
