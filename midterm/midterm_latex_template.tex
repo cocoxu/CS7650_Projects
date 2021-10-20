@@ -160,7 +160,7 @@ $\boldsymbol{f}_{m+1} = \sigma(4 + 4 + 0) = 1.0$ \\
 
 The gates of this LSTM do not restrict the flow of any information. To effectively turn this LSTM into an Elman RNN at the current timestep, i.e., include \textbf{only} information from the current input and prior hidden state and \textbf{no} information from the prior memory cell in $\boldsymbol{h}_{m+1}$, describe the values that you would need to set the gates $\boldsymbol{f}_{m+1}, \boldsymbol{i}_{m+1}$ and $\boldsymbol{o}_{m+1}$ equal to.
 
-\item Which variable from the list of intermediate variables in \autoref{fig:lstm}, \autoref{tab:lstm_weights} most closely resembles the hidden state of a standard Elman RNN? (Answer choices are $\boldsymbol{f}_{m+1}$, $\boldsymbol{i}_{m+1}$, $\boldsymbol{\tilde c}_{m+1}$, $\boldsymbol{c}_{m+1}$, $\boldsymbol{o}_{m+1}$, $\boldsymbol{h}_{m+1}$).
+\item Which variable from the list of intermediate variables in \autoref{fig:lstm} most closely resembles the hidden state of a standard Elman RNN? (Answer choices are $\boldsymbol{f}_{m+1}$, $\boldsymbol{i}_{m+1}$, $\boldsymbol{\tilde c}_{m+1}$, $\boldsymbol{c}_{m+1}$, $\boldsymbol{o}_{m+1}$, $\boldsymbol{h}_{m+1}$).
 
 \item In this problem, all the LSTM gates are scalars. What changes would have to be made to \autoref{tab:lstm_weights} in order to create vector gates? (Specify which weights would change and what their new dimensions would be). What is the benefit of vector gates over scalars?
 
