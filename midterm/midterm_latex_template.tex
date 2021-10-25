@@ -110,11 +110,11 @@ The update equations for a LSTM at timestep $m+1$ are given in \autoref{fig:lstm
     \toprule
     \textbf{Weight} & \textbf{Value} \\
     \midrule
-    $\boldsymbol{\Theta}^{(h\rightarrow f)}$ & $[1,-2,-3]^T$ \\
-    $\boldsymbol{\Theta}^{(x\rightarrow f)}$ & $[0,-1,-2]^T$ \\
+    $\boldsymbol{\Theta}^{(h\rightarrow f)}$ & $[1,-2,-3]$ \\
+    $\boldsymbol{\Theta}^{(x\rightarrow f)}$ & $[0,-1,-2]$ \\
     $\boldsymbol{b}_f$ & $0$ \\
-    $\boldsymbol{\Theta}^{(h\rightarrow i)}$ & $[0,0,1]^T$\\
-    $\boldsymbol{\Theta}^{(x\rightarrow i)}$ & $[-1,-2,-2]^T$\\
+    $\boldsymbol{\Theta}^{(h\rightarrow i)}$ & $[0,0,1]$\\
+    $\boldsymbol{\Theta}^{(x\rightarrow i)}$ & $[-1,-2,-2]$\\
     $\boldsymbol{b}_i$ & $1$ \\
     $\boldsymbol{\Theta}^{(h\rightarrow c)}$ & $\begin{bmatrix}
     0 & 1 & -3\\
@@ -125,8 +125,8 @@ The update equations for a LSTM at timestep $m+1$ are given in \autoref{fig:lstm
     1 & 0 & 0 \\
     -2 & -3 & 0\\
     1 & -1 & -2 \end{bmatrix}$ \\
-    $\boldsymbol{\Theta}^{(h\rightarrow o)}$ & $[1,0,1]^T$\\
-    $\boldsymbol{\Theta}^{(x\rightarrow o)}$ & $[-1,0,1]^T$\\
+    $\boldsymbol{\Theta}^{(h\rightarrow o)}$ & $[1,0,1]$\\
+    $\boldsymbol{\Theta}^{(x\rightarrow o)}$ & $[-1,0,1]$\\
     $\boldsymbol{b}_o$ & $-1$ \\
     \bottomrule
     \end{tabular}
@@ -156,7 +156,7 @@ $\boldsymbol{f}_{m+1} = \sigma(4 + 4 + 0) = 1.0$ \\
 \indent $\boldsymbol{\tilde{c}}_{m+1} = \text{tanh}([4, -8, -4]^T + [-3, 12, 1]^T) = \text{tanh}([1,4,-3]^T) = [0.76, 1.0, -1.0]^T$\\
 \indent $\boldsymbol{c}_{m+1} = 1.0 \odot [1,0,-4]^T + 1.0 \odot [0.76, 1.0, -1.0]^T = [1.76, 1.0, -5.0]^T $ \\
 \indent $\boldsymbol{o}_{m+1} = \sigma(2 + 2 - 1) = 1.0$\\
-\indent $\boldsymbol{h}_{m+1} = 1.0 \odot \text{tanh}([1,0,-4]^T) = \mathbf{[0.76, 0, -1.0]^T}$\\
+\indent $\boldsymbol{h}_{m+1} = 1.0 \odot \text{tanh}([1.76, 1.0, -5.0]^T) = \mathbf{[0.94, 0.76, -1.0]^T}$\\
 
 The gates of this LSTM do not restrict the flow of any information. To effectively turn this LSTM into an Elman RNN at the current timestep, i.e., include \textbf{only} information from the current input and prior hidden state and \textbf{no} information from the prior memory cell in $\boldsymbol{h}_{m+1}$, describe the values that you would need to set the gates $\boldsymbol{f}_{m+1}, \boldsymbol{i}_{m+1}$ and $\boldsymbol{o}_{m+1}$ equal to.
 
