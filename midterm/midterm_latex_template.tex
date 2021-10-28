@@ -245,8 +245,8 @@ Consider the following bigram language model. The bigram probabilities are given
     \end{table}
 
     
-  Compute the overall precision, recall, and F1 scores for the predicted entity tag sequence. Assume that the prediction is correct only when there is an exact match between the predicted entity span and the gold span. 
-    
+    Compute the overall precision, recall, and F1 scores for the predicted entity tag sequence. Assume that the prediction is correct only when there is an exact match between the predicted entity and gold spans. You don't need to differentiate between the entity types. True positives will be the entity spans that match with the gold. False positives will be the entity spans in the predicted sequence that do not match or are not contained in the gold sequence. False negatives will be the entity spans in the gold sequence that do not match or are not contained in the predicted sequence.
+
     \item 
     
     $BLEU$ score is the most common automatic evaluation metric for machine translation. Given a candidate translation $\mathbf{c}$ and human-written reference translations $\mathbf{r_1}, . . . , \mathbf{r_k}$, we compute the $BLEU$ score of $\mathbf{c}$ as follows:
